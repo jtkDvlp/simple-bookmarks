@@ -29,6 +29,7 @@
 (require 'dired)
 (require 'browse-url)
 
+;;;###autoload
 (defun sbi/add (&optional name func args more)
   (interactive "Sbookmark name: \nabookmark func: \nxbookmark args: \nxbookmark more: ")
   (when-let ((result (sbf/add-save sb/bookmarks (sbf/create name func args more))))
@@ -36,6 +37,7 @@
     (setq sb/bookmarks result)
     result))
 
+;;;###autoload
 (defun sbi/remove (&optional filter)
   (interactive "abookmark filter: ")
   (let* ((bookmark-filter (lambda (bookmark-apair) (funcall filter (sbu/val bookmark-apair))))
@@ -47,6 +49,7 @@
     (setq sb/bookmarks result)
     result))
 
+;;;###autoload
 (defun sbi/execute (&optional filter)
   (interactive "abookmark filter: ")
   (let* ((bookmark-filter (lambda (bookmark-apair) (funcall filter (sbu/val bookmark-apair))))
@@ -57,63 +60,78 @@
     (message "call bookmark '%s'" name)
     result))
 
+;;;###autoload
 (defun sbi/remove-from-all ()
   (interactive)
   (sbi/remove 'sbf/any-p))
 
+;;;###autoload
 (defun sbi/execute-from-all ()
   (interactive)
   (sbi/execute 'sbf/any-p))
 
+;;;###autoload
 (defun sbi/add-file (&optional name path more)
   (interactive "Sfile-bookmark name: \nffile-bookmark path:\ni")
   (sbi/add name 'find-file (list path) more))
 
+;;;###autoload
 (defun sbi/remove-file ()
   (interactive)
   (sbi/remove 'sbf/file-bookmark-p))
 
+;;;###autoload
 (defun sbi/execute-file ()
   (interactive)
   (sbi/execute 'sbf/file-bookmark-p))
 
+;;;###autoload
 (defun sbi/add-directory (&optional name path more)
   (interactive "Sdirectory-bookmark name: \nDdirectory-bookmark path: \ni")
   (sbi/add name 'dired (list path) more))
 
+;;;###autoload
 (defun sbi/remove-directory ()
   (interactive)
   (sbi/remove 'sbf/directory-bookmark-p))
 
+;;;###autoload
 (defun sbi/execute-directory ()
   (interactive)
   (sbi/execute 'sbf/directory-bookmark-p))
 
+;;;###autoload
 (defun sbi/add-desktop (&optional name path more)
   (interactive "Sdesktop-bookmark name: \nDdesktop-bookmark path: \ni")
   (sbi/add name 'desktop-change-dir (list path) '((prompt t))))
 
+;;;###autoload
 (defun sbi/create-desktop (&optional name path more)
   (interactive "Sdesktop-bookmark name: \nDdesktop-bookmark path: \ni")
   (desktop-save-in-desktop-dir path)
   (sbi/add name 'desktop-change-dir (list path) '((prompt t))))
 
+;;;###autoload
 (defun sbi/remove-desktop ()
   (interactive)
   (sbi/remove 'sbf/desktop-bookmark-p))
 
+;;;###autoload
 (defun sbi/execute-desktop ()
   (interactive)
   (sbi/execute 'sbf/desktop-bookmark-p))
 
+;;;###autoload
 (defun sbi/add-url (&optional name path more)
   (interactive "Surl-bookmark name: \nsurl-bookmark path: \ni")
   (sbi/add name 'browse-url (list path) more))
 
+;;;###autoload
 (defun sbi/remove-url ()
   (interactive)
   (sbi/remove 'sbf/url-bookmark-p))
 
+;;;###autoload
 (defun sbi/execute-url ()
   (interactive)
   (sbi/execute 'sbf/url-bookmark-p))

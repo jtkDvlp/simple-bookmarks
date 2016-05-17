@@ -20,19 +20,24 @@
 ;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
 
+;;;###autoload
 (defun sbu/key (apair)
   (car apair))
 
+;;;###autoload
 (defun sbu/val (apair)
   (car (cdr apair)))
 
+;;;###autoload
 (defun sbu/get (alist key)
   (car (assoc-default key alist)))
 
+;;;###autoload
 (defun sbu/update (alist key new-val)
   (append (assq-delete-all key (copy-alist alist))
           (list (list key new-val))))
 
+;;;###autoload
 (defun sbu/update-by-func (alist key func &rest args)
   (sbu/update alist key (apply 'funcall func (sbu/get alist key) args)))
 

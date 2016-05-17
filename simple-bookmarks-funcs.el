@@ -32,24 +32,31 @@
 
 (defvar sbf/prompt-really "really?: ")
 
+;;;###autoload
 (defun sbf/create (name func args &optional more)
+  "Use the `more` arg to input any information you want in the bookmark. The `more` arg should be an `alist` or `nil`."
   (append more
           (list (list 'name name))
           (list (list 'func func))
           (list (list 'args args))))
 
+;;;###autoload
 (defun sbf/get (bookmarks name)
   (sbu/get (sbf/list bookmarks) name))
 
+;;;###autoload
 (defun sbf/list (bookmarks)
   (sbu/get bookmarks 'list))
 
+;;;###autoload
 (defun sbf/names (bookmarks)
   (mapcar 'sbu/key (sbf/list bookmarks)))
 
+;;;###autoload
 (defun sbf/type-p (type bookmark)
   (equalp type (sbu/get bookmark 'func)))
 
+;;;###autoload
 (defun sbf/add (bookmarks new-bookmark)
   (let ((result (sbu/update
                  bookmarks
@@ -60,6 +67,7 @@
     (run-hook-with-args 'sbf/added-hook new-bookmark result)
     result))
 
+;;;###autoload
 (defun sbf/remove (bookmarks old-bookmark)
   (let ((result (sbu/update
                  bookmarks
@@ -68,6 +76,7 @@
     (run-hook-with-args 'sbf/removed-hook old-bookmark result)
     result))
 
+;;;###autoload
 (defun sbf/execute (bookmark)
   (let* ((func (sbu/get bookmark 'func))
          (args (sbu/get bookmark 'args))
@@ -80,6 +89,7 @@
         (run-hook-with-args 'sbf/executed-hook bookmark result)
         result))))
 
+;;;###autoload
 (defun sbf/read (file)
   (let ((result (list (list 'file file)
                       (list 'list (if (file-exists-p file)
@@ -90,6 +100,7 @@
     (run-hook-with-args 'sbf/loaded-hook file result)
     result))
 
+;;;###autoload
 (defun sbf/write (bookmarks)
   (let ((file (sbu/get bookmarks 'file))
         (list (sbu/get bookmarks 'list)))
@@ -100,16 +111,19 @@
     (run-hook-with-args 'sbf/saved-hook file bookmarks)
     bookmarks))
 
+;;;###autoload
 (defun sbf/add-save (bookmarks new-bookmark)
   (let ((result (sbf/write (sbf/add bookmarks new-bookmark))))
     (run-hook-with-args 'sbf/added-saved-hook new-bookmark result)
     result))
 
+;;;###autoload
 (defun sbf/remove-save (bookmarks old-bookmark)
   (let ((result (sbf/write (sbf/remove bookmarks old-bookmark))))
     (run-hook-with-args 'sbf/removed-saved-hook old-bookmark result)
     result))
 
+;;;###autoload
 (defun sbf/execute-by-name (bookmarks name)
   (sbf/execute (sbf/get bookmarks name)))
 

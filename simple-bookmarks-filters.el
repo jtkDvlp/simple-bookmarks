@@ -22,18 +22,23 @@
 
 (require 'simple-bookmarks-funcs)
 
+;;;###autoload
 (defun sbf/any-p (bookmark)
   t)
 
+;;;###autoload
 (defun sbf/file-bookmark-p (bookmark)
   (sbf/type-p 'find-file bookmark))
 
+;;;###autoload
 (defun sbf/directory-bookmark-p (bookmark)
   (sbf/type-p 'dired bookmark))
 
+;;;###autoload
 (defun sbf/desktop-bookmark-p (bookmark)
   (sbf/type-p 'desktop-change-dir bookmark))
 
+;;;###autoload
 (defun sbf/url-bookmark-p (bookmark)
   (sbf/type-p 'browse-url bookmark))
 
