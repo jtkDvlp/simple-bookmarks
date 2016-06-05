@@ -108,7 +108,7 @@
 ;;;###autoload
 (defun sbi/create-desktop (&optional name path more)
   (interactive "Sdesktop-bookmark name: \nDdesktop-bookmark path: \ni")
-  (desktop-save-in-desktop-dir path)
+  (desktop-change-dir path)
   (sbi/add name 'desktop-change-dir (list path) '((prompt t))))
 
 ;;;###autoload
