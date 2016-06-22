@@ -4,7 +4,7 @@
 ;; Keywords: bookmark functioncall
 ;; Package-Requires: ((files) (desktop) (dired) (browse-url))
 ;; Homepage: https://github.com/jtkDvlp/simple-bookmarks
-;; Version: 1.2
+;; Version: 1.3
 
 ;;; MIT License
 
