@@ -1,4 +1,10 @@
-;; MIT License
+;;; simple-bookmarks-interactive.el
+
+;; Author: Julian T. Knabenschuh <jtkdevelopments@gmail.com>
+;; Keywords: bookmark functioncall
+;; Version: 1.1
+
+;;; MIT License
 
 ;; Copyright (c) 2016 Julian T. Knabenschuh
 
@@ -19,6 +25,8 @@
 ;; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
+
+;; Code:
 
 ;;;###autoload
 (defun sbu/key (apair)
@@ -42,3 +50,4 @@
   (sbu/update alist key (apply 'funcall func (sbu/get alist key) args)))
 
 (provide 'simple-bookmarks-utils)
+;;; simple-bookmarks-utils.el ends here

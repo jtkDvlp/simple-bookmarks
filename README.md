@@ -1,6 +1,6 @@
 # Simple Bookmarks
 
-Simple Bookmarks is a smart enhancement for Emacs. It provides a simple but convenient interface to your recently and often used bookmarks.
+Simple Bookmarks is a smart enhancement for Emacs. It provides a simple but convenient interface to your recently and often used bookmarks / functioncalls.
 
 Actually it just holds a persistence list on disk consisting of named function calls with relevant arguments (your bookmarks). The following things are supported:
 - Add/remove/execute(call) bookmarks consisting of a name, a function (any function), some relevant arguments/parameters and any other information you want to save with the bookmark

@@ -1,4 +1,10 @@
-;; MIT License
+;;; simple-bookmarks.el --- Emacs bookmark / functioncall manager
+
+;; Author: Julian T. Knabenschuh <jtkdevelopments@gmail.com>
+;; Keywords: bookmark functioncall
+;; Version: 1.1
+
+;;; MIT License
 
 ;; Copyright (c) 2016 Julian T. Knabenschuh
 
@@ -20,6 +26,18 @@
 ;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
 
+;;; Commentary:
+
+;; A smart enhancement for emacs providing a simple but convenient interface to
+;; your recently and often used bookmarks / functioncalls.
+
+;; To use this, add the following line somewhere in you init file:
+;; (sb/init)
+
+;; Please see README.md from the repository for documentation
+
+;;; Code:
+
 (require 'simple-bookmarks-utils)
 (require 'simple-bookmarks-filters)
 (require 'simple-bookmarks-funcs)
@@ -32,7 +50,9 @@
 
 (defvar sb/bookmarks nil)
 
+;;;###autoload
 (defun sb/init ()
   (setq sb/bookmarks (sbf/read sb/file)))
 
 (provide 'simple-bookmarks)
+;;; simple-bookmarks.el ends here

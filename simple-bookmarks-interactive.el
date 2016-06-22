@@ -1,4 +1,10 @@
-;; MIT License
+;;; simple-bookmarks-interactive.el
+
+;; Author: Julian T. Knabenschuh <jtkdevelopments@gmail.com>
+;; Keywords: bookmark functioncall
+;; Version: 1.1
+
+;;; MIT License
 
 ;; Copyright (c) 2016 Julian T. Knabenschuh
 
@@ -19,6 +25,8 @@
 ;; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
+
+;; Code:
 
 (require 'simple-bookmarks-funcs)
 (require 'simple-bookmarks-filters)
@@ -137,3 +145,4 @@
   (sbi/execute 'sbf/url-bookmark-p))
 
 (provide 'simple-bookmarks-interactive)
+;;; simple-bookmarks-interactive.el ends here
