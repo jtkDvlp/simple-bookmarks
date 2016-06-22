@@ -1,8 +1,6 @@
 ;;; simple-bookmarks-funcs.el
 
 ;; Author: Julian T. Knabenschuh <jtkdevelopments@gmail.com>
-;; Keywords: bookmark functioncall
-;; Version: 1.1
 
 ;;; MIT License
 
