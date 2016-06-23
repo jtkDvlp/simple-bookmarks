@@ -34,6 +34,7 @@
 (require 'desktop)
 (require 'dired)
 (require 'browse-url)
+(require 'cl-lib)
 
 ;;;###autoload
 (defun sbi/add (&optional name func args more)
@@ -47,7 +48,7 @@
 (defun sbi/remove (&optional filter)
   (interactive "abookmark filter: ")
   (let* ((bookmark-filter (lambda (bookmark-apair) (funcall filter (sbu/val bookmark-apair))))
-         (list-filter (lambda (list) (remove-if-not bookmark-filter list)))
+         (list-filter (lambda (list) (cl-remove-if-not bookmark-filter list)))
          (names (mapcar 'symbol-name (sbf/names (sbu/update-by-func sb/bookmarks 'list list-filter))))
          (name (intern (completing-read "remove bookmark: " names nil t)))
          (result (sbf/remove-save sb/bookmarks (sbf/get sb/bookmarks name))))
@@ -59,7 +60,7 @@
 (defun sbi/execute (&optional filter)
   (interactive "abookmark filter: ")
   (let* ((bookmark-filter (lambda (bookmark-apair) (funcall filter (sbu/val bookmark-apair))))
-         (list-filter (lambda (list) (remove-if-not bookmark-filter list)))
+         (list-filter (lambda (list) (cl-remove-if-not bookmark-filter list)))
          (names (mapcar 'symbol-name (sbf/names (sbu/update-by-func sb/bookmarks 'list list-filter))))
          (name (intern (completing-read "call bookmark: " names nil t)))
          (result (sbf/execute-by-name sb/bookmarks name)))
