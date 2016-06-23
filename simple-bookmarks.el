@@ -3,7 +3,7 @@
 ;; Author: Julian T. Knabenschuh <jtkdevelopments@gmail.com>
 ;; Keywords: bookmark functioncall
 ;; Homepage: https://github.com/jtkDvlp/simple-bookmarks
-;; Version: 1.3
+;; Version: 1.4
 ;; Package-Requires: ((cl-lib "0.5"))
 
 ;;; MIT License
