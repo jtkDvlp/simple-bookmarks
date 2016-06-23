@@ -39,10 +39,11 @@
 ;;;###autoload
 (defun sbi/add (&optional name func args more)
   (interactive "Sbookmark name: \nabookmark func: \nxbookmark args: \nxbookmark more: ")
-  (when-let ((result (sbf/add-save sb/bookmarks (sbf/create name func args more))))
-    (message "added bookmark '%s'" name)
-    (setq sb/bookmarks result)
-    result))
+  (let ((result (sbf/add-save sb/bookmarks (sbf/create name func args more))))
+    (when result
+      (message "added bookmark '%s'" name)
+      (setq sb/bookmarks result)
+      result)))
 
 ;;;###autoload
 (defun sbi/remove (&optional filter)
