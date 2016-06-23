@@ -27,6 +27,7 @@
 ;; Code:
 
 (require 'simple-bookmarks-utils)
+(require 'cl-lib)
 
 (defvar sbf/added-hook nil)
 (defvar sbf/removed-hook nil)
@@ -60,7 +61,7 @@
 
 ;;;###autoload
 (defun sbf/type-p (type bookmark)
-  (equalp type (sbu/get bookmark 'func)))
+  (cl-equalp type (sbu/get bookmark 'func)))
 
 ;;;###autoload
 (defun sbf/add (bookmarks new-bookmark)
