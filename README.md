@@ -20,8 +20,8 @@ Download it and [set up your load path](http://www.emacswiki.org/emacs/Installin
 
 ### Usage
 ```
-;; the bookmark file will automatically be loaded
 (require 'simple-bookmarks)
+(sb/init)
 
 ;; handles all bookmarks
 (global-set-key (kbd "M-- l") 'sbi/execute-from-all)
@@ -59,7 +59,7 @@ If there are other functions you often use, maybe it´s advisable to save these f
   (interactive "Sfile-bookmark name: \nffile-bookmark path:\ni")
   (sbi/add name 'find-file (list path) more))
 ```
-The two functions below are just filtered versions of "sbi/remove", so these are not really needed. If you want to provide them, of course you has to provide the corresponding filter.
+The two functions below are just filtered versions of "sbi/remove" and "sbi/execute", so these are not really needed. If you want to provide them, of course you has to provide the corresponding filter.
 ```
 (defun sbi/remove-file ()
   (interactive)
