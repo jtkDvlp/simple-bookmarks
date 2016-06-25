@@ -29,24 +29,24 @@
 (require 'simple-bookmarks-funcs)
 
 ;;;###autoload
-(defun sbf/any-p (bookmark)
+(defun simple-bookmarks-filters-any-p (bookmark)
   t)
 
 ;;;###autoload
-(defun sbf/file-bookmark-p (bookmark)
-  (sbf/type-p 'find-file bookmark))
+(defun simple-bookmarks-filters-file-bookmark-p (bookmark)
+  (simple-bookmarks-funcs-type-p 'find-file bookmark))
 
 ;;;###autoload
-(defun sbf/directory-bookmark-p (bookmark)
-  (sbf/type-p 'dired bookmark))
+(defun simple-bookmarks-filters-directory-bookmark-p (bookmark)
+  (simple-bookmarks-funcs-type-p 'dired bookmark))
 
 ;;;###autoload
-(defun sbf/desktop-bookmark-p (bookmark)
-  (sbf/type-p 'desktop-change-dir bookmark))
+(defun simple-bookmarks-filters-desktop-bookmark-p (bookmark)
+  (simple-bookmarks-funcs-type-p 'desktop-change-dir bookmark))
 
 ;;;###autoload
-(defun sbf/url-bookmark-p (bookmark)
-  (sbf/type-p 'browse-url bookmark))
+(defun simple-bookmarks-filters-url-bookmark-p (bookmark)
+  (simple-bookmarks-funcs-type-p 'browse-url bookmark))
 
 (provide 'simple-bookmarks-filters)
 ;;; simple-bookmarks-filters.el ends here

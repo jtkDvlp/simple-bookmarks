@@ -27,25 +27,25 @@
 ;; Code:
 
 ;;;###autoload
-(defun sbu/key (apair)
+(defun simple-bookmarks-utils-key (apair)
   (car apair))
 
 ;;;###autoload
-(defun sbu/val (apair)
+(defun simple-bookmarks-utils-val (apair)
   (car (cdr apair)))
 
 ;;;###autoload
-(defun sbu/get (alist key)
+(defun simple-bookmarks-utils-get (alist key)
   (car (assoc-default key alist)))
 
 ;;;###autoload
-(defun sbu/update (alist key new-val)
+(defun simple-bookmarks-utils-update (alist key new-val)
   (append (assq-delete-all key (copy-alist alist))
           (list (list key new-val))))
 
 ;;;###autoload
-(defun sbu/update-by-func (alist key func &rest args)
-  (sbu/update alist key (apply 'funcall func (sbu/get alist key) args)))
+(defun simple-bookmarks-utils-update-by-func (alist key func &rest args)
+  (simple-bookmarks-utils-update alist key (apply 'funcall func (simple-bookmarks-utils-get alist key) args)))
 
 (provide 'simple-bookmarks-utils)
 ;;; simple-bookmarks-utils.el ends here

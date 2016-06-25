@@ -37,112 +37,112 @@
 (require 'cl-lib)
 
 ;;;###autoload
-(defun sbi/add (&optional name func args more)
+(defun simple-bookmarks-interactive-add (&optional name func args more)
   (interactive "Sbookmark name: \nabookmark func: \nxbookmark args: \nxbookmark more: ")
-  (let ((result (sbf/add-save sb/bookmarks (sbf/create name func args more))))
+  (let ((result (simple-bookmarks-funcs-add-save simple-bookmarks-bookmarks (simple-bookmarks-funcs-create name func args more))))
     (when result
       (message "added bookmark '%s'" name)
-      (setq sb/bookmarks result)
+      (setq simple-bookmarks-bookmarks result)
       result)))
 
 ;;;###autoload
-(defun sbi/remove (&optional filter)
+(defun simple-bookmarks-interactive-remove (&optional filter)
   (interactive "abookmark filter: ")
-  (let* ((bookmark-filter (lambda (bookmark-apair) (funcall filter (sbu/val bookmark-apair))))
+  (let* ((bookmark-filter (lambda (bookmark-apair) (funcall filter (simple-bookmarks-utils-val bookmark-apair))))
          (list-filter (lambda (list) (cl-remove-if-not bookmark-filter list)))
-         (names (mapcar 'symbol-name (sbf/names (sbu/update-by-func sb/bookmarks 'list list-filter))))
+         (names (mapcar 'symbol-name (simple-bookmarks-funcs-names (simple-bookmarks-utils-update-by-func simple-bookmarks-bookmarks 'list list-filter))))
          (name (intern (completing-read "remove bookmark: " names nil t)))
-         (result (sbf/remove-save sb/bookmarks (sbf/get sb/bookmarks name))))
+         (result (simple-bookmarks-funcs-remove-save simple-bookmarks-bookmarks (simple-bookmarks-funcs-get simple-bookmarks-bookmarks name))))
     (message "removed bookmark '%s'" name)
-    (setq sb/bookmarks result)
+    (setq simple-bookmarks-bookmarks result)
     result))
 
 ;;;###autoload
-(defun sbi/execute (&optional filter)
+(defun simple-bookmarks-interactive-execute (&optional filter)
   (interactive "abookmark filter: ")
-  (let* ((bookmark-filter (lambda (bookmark-apair) (funcall filter (sbu/val bookmark-apair))))
+  (let* ((bookmark-filter (lambda (bookmark-apair) (funcall filter (simple-bookmarks-utils-val bookmark-apair))))
          (list-filter (lambda (list) (cl-remove-if-not bookmark-filter list)))
-         (names (mapcar 'symbol-name (sbf/names (sbu/update-by-func sb/bookmarks 'list list-filter))))
+         (names (mapcar 'symbol-name (simple-bookmarks-funcs-names (simple-bookmarks-utils-update-by-func simple-bookmarks-bookmarks 'list list-filter))))
          (name (intern (completing-read "call bookmark: " names nil t)))
-         (result (sbf/execute-by-name sb/bookmarks name)))
+         (result (simple-bookmarks-funcs-execute-by-name simple-bookmarks-bookmarks name)))
     (message "call bookmark '%s'" name)
     result))
 
 ;;;###autoload
-(defun sbi/remove-from-all ()
+(defun simple-bookmarks-interactive-remove-from-all ()
   (interactive)
-  (sbi/remove 'sbf/any-p))
+  (simple-bookmarks-interactive-remove 'simple-bookmarks-filters-any-p))
 
 ;;;###autoload
-(defun sbi/execute-from-all ()
+(defun simple-bookmarks-interactive-execute-from-all ()
   (interactive)
-  (sbi/execute 'sbf/any-p))
+  (simple-bookmarks-interactive-execute 'simple-bookmarks-filters-any-p))
 
 ;;;###autoload
-(defun sbi/add-file (&optional name path more)
+(defun simple-bookmarks-interactive-add-file (&optional name path more)
   (interactive "Sfile-bookmark name: \nffile-bookmark path:\ni")
-  (sbi/add name 'find-file (list path) more))
+  (simple-bookmarks-interactive-add name 'find-file (list path) more))
 
 ;;;###autoload
-(defun sbi/remove-file ()
+(defun simple-bookmarks-interactive-remove-file ()
   (interactive)
-  (sbi/remove 'sbf/file-bookmark-p))
+  (simple-bookmarks-interactive-remove 'simple-bookmarks-filters-file-bookmark-p))
 
 ;;;###autoload
-(defun sbi/execute-file ()
+(defun simple-bookmarks-interactive-execute-file ()
   (interactive)
-  (sbi/execute 'sbf/file-bookmark-p))
+  (simple-bookmarks-interactive-execute 'simple-bookmarks-filters-file-bookmark-p))
 
 ;;;###autoload
-(defun sbi/add-directory (&optional name path more)
+(defun simple-bookmarks-interactive-add-directory (&optional name path more)
   (interactive "Sdirectory-bookmark name: \nDdirectory-bookmark path: \ni")
-  (sbi/add name 'dired (list path) more))
+  (simple-bookmarks-interactive-add name 'dired (list path) more))
 
 ;;;###autoload
-(defun sbi/remove-directory ()
+(defun simple-bookmarks-interactive-remove-directory ()
   (interactive)
-  (sbi/remove 'sbf/directory-bookmark-p))
+  (simple-bookmarks-interactive-remove 'simple-bookmarks-filters-directory-bookmark-p))
 
 ;;;###autoload
-(defun sbi/execute-directory ()
+(defun simple-bookmarks-interactive-execute-directory ()
   (interactive)
-  (sbi/execute 'sbf/directory-bookmark-p))
+  (simple-bookmarks-interactive-execute 'simple-bookmarks-filters-directory-bookmark-p))
 
 ;;;###autoload
-(defun sbi/add-desktop (&optional name path more)
+(defun simple-bookmarks-interactive-add-desktop (&optional name path more)
   (interactive "Sdesktop-bookmark name: \nDdesktop-bookmark path: \ni")
-  (sbi/add name 'desktop-change-dir (list path) '((prompt t))))
+  (simple-bookmarks-interactive-add name 'desktop-change-dir (list path) '((prompt t))))
 
 ;;;###autoload
-(defun sbi/create-desktop (&optional name path more)
+(defun simple-bookmarks-interactive-create-desktop (&optional name path more)
   (interactive "Sdesktop-bookmark name: \nDdesktop-bookmark path: \ni")
   (desktop-change-dir path)
-  (sbi/add name 'desktop-change-dir (list path) '((prompt t))))
+  (simple-bookmarks-interactive-add name 'desktop-change-dir (list path) '((prompt t))))
 
 ;;;###autoload
-(defun sbi/remove-desktop ()
+(defun simple-bookmarks-interactive-remove-desktop ()
   (interactive)
-  (sbi/remove 'sbf/desktop-bookmark-p))
+  (simple-bookmarks-interactive-remove 'simple-bookmarks-filters-desktop-bookmark-p))
 
 ;;;###autoload
-(defun sbi/execute-desktop ()
+(defun simple-bookmarks-interactive-execute-desktop ()
   (interactive)
-  (sbi/execute 'sbf/desktop-bookmark-p))
+  (simple-bookmarks-interactive-execute 'simple-bookmarks-filters-desktop-bookmark-p))
 
 ;;;###autoload
-(defun sbi/add-url (&optional name path more)
+(defun simple-bookmarks-interactive-add-url (&optional name path more)
   (interactive "Surl-bookmark name: \nsurl-bookmark path: \ni")
-  (sbi/add name 'browse-url (list path) more))
+  (simple-bookmarks-interactive-add name 'browse-url (list path) more))
 
 ;;;###autoload
-(defun sbi/remove-url ()
+(defun simple-bookmarks-interactive-remove-url ()
   (interactive)
-  (sbi/remove 'sbf/url-bookmark-p))
+  (simple-bookmarks-interactive-remove 'simple-bookmarks-filters-url-bookmark-p))
 
 ;;;###autoload
-(defun sbi/execute-url ()
+(defun simple-bookmarks-interactive-execute-url ()
   (interactive)
-  (sbi/execute 'sbf/url-bookmark-p))
+  (simple-bookmarks-interactive-execute 'simple-bookmarks-filters-url-bookmark-p))
 
 (provide 'simple-bookmarks-interactive)
 ;;; simple-bookmarks-interactive.el ends here

@@ -1,4 +1,4 @@
-;;; simple-bookmarks.el --- Emacs bookmark / functioncall manager
+;;; simple-bookmarks.el --- Bookmark / functioncall manager
 
 ;; Author: Julian T. Knabenschuh <jtkdevelopments@gmail.com>
 ;; Keywords: bookmark functioncall
@@ -30,11 +30,11 @@
 
 ;;; Commentary:
 
-;; A smart enhancement for emacs providing a simple but convenient interface to
+;; A smart enhancement providing a simple but convenient interface to
 ;; your recently and often used bookmarks / functioncalls.
 
 ;; To use this, add the following line somewhere in you init file:
-;; (sb/init)
+;; (simple-bookmarks-init)
 
 ;; Please see README.md from the repository for documentation
 
@@ -45,16 +45,16 @@
 (require 'simple-bookmarks-funcs)
 (require 'simple-bookmarks-interactive)
 
-(defcustom sb/file "~/.emacs.d/simple-bookmarks"
+(defcustom simple-bookmarks-file "~/.emacs.d/simple-bookmarks"
   nil
   :type 'file
   :group 'simple-bookmarks)
 
-(defvar sb/bookmarks nil)
+(defvar simple-bookmarks-bookmarks nil)
 
 ;;;###autoload
-(defun sb/init ()
-  (setq sb/bookmarks (sbf/read sb/file)))
+(defun simple-bookmarks-init ()
+  (setq simple-bookmarks-bookmarks (simple-bookmarks-funcs-read simple-bookmarks-file)))
 
 (provide 'simple-bookmarks)
 ;;; simple-bookmarks.el ends here
