@@ -45,6 +45,10 @@
 (require 'simple-bookmarks-funcs)
 (require 'simple-bookmarks-interactive)
 
+(defgroup simple-bookmarks nil
+  "A smart enhancement providing a simple but convenient interface to your recently and often used bookmarks / functioncalls."
+  :group 'convenience)
+
 (defcustom simple-bookmarks-file "~/.emacs.d/simple-bookmarks"
   nil
   :type 'file
