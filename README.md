@@ -1,4 +1,4 @@
-# Simple Bookmarks
+# Simple Bookmarks [![MELPA](http://melpa.org/packages/simple-bookmarks-badge.svg)](http://melpa.org/#/simple-bookmarks)
 
 Simple Bookmarks is a smart enhancement for Emacs. It provides a simple but convenient interface to your recently and often used bookmarks / functioncalls.
 
