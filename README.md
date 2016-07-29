@@ -16,7 +16,8 @@ Actually it just holds a persistence list on disk consisting of named function c
 
 ### Get it
 
-Download it and [set up your load path](http://www.emacswiki.org/emacs/InstallingPackages).
+- Via [![MELPA](http://melpa.org/packages/simple-bookmarks-badge.svg)](http://melpa.org/#/simple-bookmarks)
+- Or manually download it and [set up your load path](http://www.emacswiki.org/emacs/InstallingPackages).
 
 ### Usage
 ```
