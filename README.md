@@ -1,4 +1,4 @@
-# Simple Bookmarks [![MELPA](http://melpa.org/packages/simple-bookmarks-badge.svg)](http://melpa.org/#/simple-bookmarks)
+# Simple Bookmarks [![MELPA](http://melpa.org/packages/simple-bookmarks-badge.svg)](http://melpa.org/#/simple-bookmarks) [![MELPA Stable](https://stable.melpa.org/packages/simple-bookmarks-badge.svg)](https://stable.melpa.org/#/simple-bookmarks)
 
 Simple Bookmarks is a smart enhancement for Emacs. It provides a simple but convenient interface to your recently and often used bookmarks / functioncalls.
 
@@ -16,7 +16,7 @@ Actually it just holds a persistence list on disk consisting of named function c
 
 ### Get it
 
-- Via [![MELPA](http://melpa.org/packages/simple-bookmarks-badge.svg)](http://melpa.org/#/simple-bookmarks)
+- Via [![MELPA](http://melpa.org/packages/simple-bookmarks-badge.svg)](http://melpa.org/#/simple-bookmarks) or [![MELPA Stable](https://stable.melpa.org/packages/simple-bookmarks-badge.svg)](https://stable.melpa.org/#/simple-bookmarks)
 - Or manually download it and [set up your load path](http://www.emacswiki.org/emacs/InstallingPackages).
 
 ### Usage
