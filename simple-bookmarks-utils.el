@@ -26,24 +26,19 @@
 
 ;; Code:
 
-;;;###autoload
 (defun simple-bookmarks-utils-key (apair)
   (car apair))
 
-;;;###autoload
 (defun simple-bookmarks-utils-val (apair)
   (car (cdr apair)))
 
-;;;###autoload
 (defun simple-bookmarks-utils-get (alist key)
   (car (assoc-default key alist)))
 
-;;;###autoload
 (defun simple-bookmarks-utils-update (alist key new-val)
   (append (assq-delete-all key (copy-alist alist))
           (list (list key new-val))))
 
-;;;###autoload
 (defun simple-bookmarks-utils-update-by-func (alist key func &rest args)
   (simple-bookmarks-utils-update alist key (apply 'funcall func (simple-bookmarks-utils-get alist key) args)))
 

@@ -39,7 +39,6 @@
 
 (defvar simple-bookmarks-funcs-prompt-really "really?: ")
 
-;;;###autoload
 (defun simple-bookmarks-funcs-create (name func args &optional more)
   "Use the `more` arg to input any information you want in the bookmark. The `more` arg should be an `alist` or `nil`."
   (append more
@@ -47,23 +46,18 @@
           (list (list 'func func))
           (list (list 'args args))))
 
-;;;###autoload
 (defun simple-bookmarks-funcs-get (bookmarks name)
   (simple-bookmarks-utils-get (simple-bookmarks-funcs-list bookmarks) name))
 
-;;;###autoload
 (defun simple-bookmarks-funcs-list (bookmarks)
   (simple-bookmarks-utils-get bookmarks 'list))
 
-;;;###autoload
 (defun simple-bookmarks-funcs-names (bookmarks)
   (mapcar 'simple-bookmarks-utils-key (simple-bookmarks-funcs-list bookmarks)))
 
-;;;###autoload
 (defun simple-bookmarks-funcs-type-p (type bookmark)
   (cl-equalp type (simple-bookmarks-utils-get bookmark 'func)))
 
-;;;###autoload
 (defun simple-bookmarks-funcs-add (bookmarks new-bookmark)
   (let ((result (simple-bookmarks-utils-update
                  bookmarks
@@ -74,7 +68,6 @@
     (run-hook-with-args 'simple-bookmarks-funcs-added-hook new-bookmark result)
     result))
 
-;;;###autoload
 (defun simple-bookmarks-funcs-remove (bookmarks old-bookmark)
   (let ((result (simple-bookmarks-utils-update
                  bookmarks
@@ -83,7 +76,6 @@
     (run-hook-with-args 'simple-bookmarks-funcs-removed-hook old-bookmark result)
     result))
 
-;;;###autoload
 (defun simple-bookmarks-funcs-execute (bookmark)
   (let* ((func (simple-bookmarks-utils-get bookmark 'func))
          (args (simple-bookmarks-utils-get bookmark 'args))
@@ -96,7 +88,6 @@
         (run-hook-with-args 'simple-bookmarks-funcs-executed-hook bookmark result)
         result))))
 
-;;;###autoload
 (defun simple-bookmarks-funcs-read (file)
   (let ((result (list (list 'file file)
                       (list 'list (if (file-exists-p file)
@@ -107,7 +98,6 @@
     (run-hook-with-args 'simple-bookmarks-funcs-loaded-hook file result)
     result))
 
-;;;###autoload
 (defun simple-bookmarks-funcs-write (bookmarks)
   (let ((file (simple-bookmarks-utils-get bookmarks 'file))
         (list (simple-bookmarks-utils-get bookmarks 'list)))
@@ -118,19 +108,16 @@
     (run-hook-with-args 'simple-bookmarks-funcs-saved-hook file bookmarks)
     bookmarks))
 
-;;;###autoload
 (defun simple-bookmarks-funcs-add-save (bookmarks new-bookmark)
   (let ((result (simple-bookmarks-funcs-write (simple-bookmarks-funcs-add bookmarks new-bookmark))))
     (run-hook-with-args 'simple-bookmarks-funcs-added-saved-hook new-bookmark result)
     result))
 
-;;;###autoload
 (defun simple-bookmarks-funcs-remove-save (bookmarks old-bookmark)
   (let ((result (simple-bookmarks-funcs-write (simple-bookmarks-funcs-remove bookmarks old-bookmark))))
     (run-hook-with-args 'simple-bookmarks-funcs-removed-saved-hook old-bookmark result)
     result))
 
-;;;###autoload
 (defun simple-bookmarks-funcs-execute-by-name (bookmarks name)
   (simple-bookmarks-funcs-execute (simple-bookmarks-funcs-get bookmarks name)))
 

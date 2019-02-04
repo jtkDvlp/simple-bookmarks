@@ -28,23 +28,18 @@
 
 (require 'simple-bookmarks-funcs)
 
-;;;###autoload
 (defun simple-bookmarks-filters-any-p (bookmark)
   t)
 
-;;;###autoload
 (defun simple-bookmarks-filters-file-bookmark-p (bookmark)
   (simple-bookmarks-funcs-type-p 'find-file bookmark))
 
-;;;###autoload
 (defun simple-bookmarks-filters-directory-bookmark-p (bookmark)
   (simple-bookmarks-funcs-type-p 'dired bookmark))
 
-;;;###autoload
 (defun simple-bookmarks-filters-desktop-bookmark-p (bookmark)
   (simple-bookmarks-funcs-type-p 'desktop-change-dir bookmark))
 
-;;;###autoload
 (defun simple-bookmarks-filters-url-bookmark-p (bookmark)
   (simple-bookmarks-funcs-type-p 'browse-url bookmark))
 
